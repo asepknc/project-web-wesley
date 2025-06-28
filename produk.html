@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Produk - Asia Jaya Store</title>
+  <style>
+    /* Reset and base */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #fff;
+      color: #222;
+    }
+
+    header {
+      background-color: #0e4d92;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      animation: fadeSlideIn 1s ease forwards;
+    }
+    header h1 {
+      margin: 0 0 8px;
+      font-size: 2.5rem;
+      letter-spacing: 1.2px;
+    }
+    header p {
+      margin: 0;
+      font-weight: 500;
+      font-size: 1.1rem;
+    }
+
+    nav {
+      background-color: #333;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 12px 0;
+      animation: fadeSlideIn 1.2s ease forwards;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 6px 14px;
+      border-radius: 4px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    nav a:hover,
+    nav a:focus {
+      background-color: #0e4d92;
+      color: #ffd700;
+      outline: none;
+    }
+
+    main {
+      padding: 40px 20px;
+      max-width: 1100px;
+      margin: 0 auto 60px;
+      animation: fadeSlideIn 1.5s ease forwards;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #0e4d92;
+      font-size: 2rem;
+      letter-spacing: 1px;
+    }
+
+    .product-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+    }
+
+    .product-card {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      width: 220px;
+      padding: 15px;
+      text-align: center;
+      background: white;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      animation: fadeSlideUp 1.2s ease forwards;
+    }
+    .product-card:hover,
+    .product-card:focus-within {
+      transform: translateY(-8px) scale(1.05);
+      box-shadow: 0 10px 20px rgba(14, 77, 146, 0.3);
+      outline: none;
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 6px;
+      margin-bottom: 12px;
+    }
+
+    .product-card h3 {
+      margin: 10px 0 5px;
+      color: #0e4d92;
+      font-size: 1.2rem;
+    }
+
+    .product-card p {
+      color: green;
+      font-weight: bold;
+      margin: 0 0 8px;
+      font-size: 1.1rem;
+    }
+
+    .product-card small {
+      color: #555;
+      font-size: 0.9rem;
+      display: block;
+      margin-top: 0;
+    }
+
+    footer {
+      background-color: #222;
+      color: white;
+      text-align: center;
+      padding: 20px 10px;
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
+      margin-top: 40px;
+    }
+
+    /* Animations */
+    @keyframes fadeSlideIn {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeSlideUp {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 650px) {
+      .product-grid {
+        flex-direction: column;
+        align-items: center;
+      }
+      .product-card {
+        width: 90%;
+        max-width: 320px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Asia Jaya computer</h1>
+    <p>Daftar Produk Komputer Terlengkap</p>
+  </header>
+
+  <nav>
+    <a href="index.html">Beranda</a>
+    <a href="produk.html">Produk</a>
+    <a href="tentang.html">Tentang Kami</a>
+    <a href="kontak.html">Kontak</a>
+  </nav>
+
+  <main>
+    <h2>Semua Produk</h2>
+    <div class="product-grid" id="product-container">
+      <!-- Produk akan dimuat lewat JS -->
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Asia Jaya Store. All rights reserved.</p>
+  </footer>
+
+  <script src="js/produk.js"></script>
+  <script>
+    // Assuming produk array is loaded by js/produk.js
+    const container = document.getElementById("product-container");
+
+    produk.forEach((item, i) => {
+      const card = document.createElement("div");
+      card.className = "product-card";
+      // Adding animation delay for stagger effect
+      card.style.animationDelay = `${i * 0.15}s`;
+      card.setAttribute('tabindex', '0'); // keyboard focusable
+      card.innerHTML = `
+        <img src="${item.gambar}" alt="${item.nama}" />
+        <h3>${item.nama}</h3>
+        <p>Rp ${item.harga.toLocaleString('id-ID')}</p>
+        <small>${item.deskripsi}</small>
+      `;
+      container.appendChild(card);
+    });
+  </script>
+
+</body>
+</html>
